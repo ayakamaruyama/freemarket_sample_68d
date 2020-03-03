@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   
   root 'home#index'
   resources :items, except: [:index] do
+    resources :comments, only: [:new, :create]
     resources :orders, only: :new do
       collection do
         get 'new', to: 'orders#new'
@@ -20,13 +21,13 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:index, :show, :edit, :update]
-    resources :addresses, only: [:new, :create, :edit, :update]
-    resources :credit_cards, only: [:new, :show] do
-      collection do
-        get 'edit', to: 'credit_cards#edit'
-        post 'show', to: 'credit_cards#show'
-        post 'pay', to: 'credit_cards#pay'
-        post 'delete', to: 'credit_cards#delete'
-      end
+  resources :addresses, only: [:new, :create, :edit, :update]
+  resources :credit_cards, only: [:new, :show] do
+    collection do
+      get 'edit', to: 'credit_cards#edit'
+      post 'show', to: 'credit_cards#show'
+      post 'pay', to: 'credit_cards#pay'
+      post 'delete', to: 'credit_cards#delete'
     end
+  end
 end

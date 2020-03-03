@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
 
   def show
     @item_image = @item.item_images[0].url.url
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def new

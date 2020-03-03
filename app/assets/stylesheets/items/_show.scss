@@ -145,19 +145,168 @@
         }
       }
     }
-    &__comment {
+  }  
+    &__content__comment {
       padding: 24px;
       background-color: $wh;
       margin: 10px 0;
-      text-align: center;
-      &__form {
-        textarea {
+      // text-align: center;
+      &__top {
+        display: flex;
+        height: 150px;
+        width: 650px;
+        margin: 10px 0 30px;
+        padding: 0;
+        color: $sub-font;
+        
+        
+       
+        
+        
+        &__user-image {
+          height: 130px;
+          width:50px;
+          float: left;
+
+          &__user-box {
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 50%;
+            
+          }
+
+          .buyer {
+            width: 40px;
+            height: 40px;
+          }
+
+          &__seller-box {
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 50%;
+            text-align: center;
+          }
+          .seller {
+            width: 40px;
+            height: 40px;
+           
+           
+          }
+          
+          p {
+            width: 40px;
+            height: 20px;
+            font-size: 12px;
+            background: #eef0f4;
+            margin-top: 10px;
+
+          }
+        }
+        
+        &__details {
+          height: 130px;
+          width: 600px;
+          
+        
+        
+
+          &__user-name {
+            width: 600px;
+            height: 15px;
+            // float: right;
+            // position: relative;
+            top: 0;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0;
+            margin-bottom: 15px;
+          }
+
+          
+          &__user-message-box {
+            width: 600px;
+            height: 115px;
+            
+            padding: 16px;
+            background: #eef0f4;
+            color: $sub-font;
+            border-radius: 15px;
+            line-height: 1.5;
+            margin: 0;
+            font-size: 14px;
+
+            
+          
+
+            &__text {
+              height: 60px;
+              width: 560px;
+              margin: 0;
+              padding: 0;
+              color: $sub-font;
+            }
+
+            // &__icon-balloon:before {
+              
+            //   height: 15px;
+            //   width: 10px;
+            //   position: absolute;
+            //   top: 8px;
+            //   left: -9px;
+            //   color: #eef0f4;
+            //   content: '\e009';
+              
+            // }
+            
+            
+
+            &__time {
+              height: 22px;
+              width: 560px;
+              margin: 8px 0 0 0;
+              padding: 0;
+              color: #AAAAAA;
+              display: flex;
+              justify-content: space-between;
+            
+              &__time-box {
+                height: 22px;
+                width: 57px;
+                color: #aaa;
+                float: left;
+                margin: 0;
+                padding: 0;
+                margin: 0 auto;
+              }
+
+              &__flag-box {
+                float: right;
+                height: 15px;
+                width: 15px;
+                color: #aaa;
+              }
+                .flag-before {
+                  height: 14px;
+                  width: 14px;
+                  color: #aaa;
+                }
+            }  
+          } 
+        } 
+      }   
+        
+      
+        &__form {
+        text-align: center;
+        
+        #comment_content{
           width: 100%;
           min-height: 104px;
-          padding: 10px;
-          resize: none;
         }
         &__notice {
+          
           padding: 8px;
           font-size: 14px;
           background-color: $beige;
@@ -179,7 +328,7 @@
         }
       }
     }
-  }
+  
   &__other {
     margin: 0 auto;
     width: 700px;

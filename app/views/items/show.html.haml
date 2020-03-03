@@ -82,15 +82,79 @@
               = link_to '#', class: "report-box__link" do
                 %i= icon('fa', 'flag', class: "report-icon")
                 %span= "不適切な商品の通報"
+    
     .is-main__content__comment
-      = form_with url: '#', method: :get, local: true, class: "is-main__content__comment__form" do |f|
-        = f.text_area :keyword, autocomplete: "off"
+      .is-main__content__comment__top
+        .is-main__content__comment__top__user-image
+          .is-main__content__comment__top__user-image__user-box
+            = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png" ,class:"buyer"
+        .is-main__content__comment__top__details
+          .is-main__content__comment__top__details__user-name
+            %p 猫
+          
+          
+            
+              
+
+          .is-main__content__comment__top__details__user-message-box
+            .is-main__content__comment__top__details__user-message-box__text
+              %p 初めまして
+            -# .is-main__content__comment__top__details__user-message-box__icon-balloon::before 
+               
+            .is-main__content__comment__top__details__user-message-box__time
+              .time-box
+                %i= icon('fa', 'clock',class:"time-before") 
+                %span.day-before 10分前
+
+              .flag-box
+                =link_to '#', class: "flag-box" do
+                  %i= icon('fa', 'flag', class: "flag-before")
+      
+      .is-main__content__comment__top
+        .is-main__content__comment__top__user-image
+          .is-main__content__comment__top__user-image__user-box
+            = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?1244592441", class:"seller" 
+          .is-main__content__comment__top__user-image__seller-box  
+            %p 出品者
+        .is-main__content__comment__top__details    
+          .is-main__content__comment__top__details__user-name
+            %p 犬
+        
+          .is-main__content__comment__top__details__user-message-box
+            .is-main__content__comment__top__details__user-message-box__text
+              %p 初めまして。こちらこそよろしくお願いします。
+            -# .is-main__content__comment__top__details__user-message-box__icon-balloon:before   
+        
+            .is-main__content__comment__top__details__user-message-box__time
+              .time-box
+                %i= icon('fa', 'clock',class:"time-before") 
+                %span.day-before 10分前
+
+              .flag-box
+                =link_to '#', class: "flag-box" do
+                  %i= icon('fa', 'flag', class: "flag-before")
+      
+      
+      
+      = form_with(model: [@item, @comment], local: true, class: "is-main__content__comment__form",id: "new_comment") do |f|
+        = f.text_field :content, class: "is-main__content__comment__form"
+        
         %p.is-main__content__comment__form__notice
           = "相手のことを考え丁寧なコメントを心がけましょう。"
           %br= "不快な言葉遣いなどは利用制限や退会処分となることがあります。"
-        = button_tag type: "submit", class: "comment-btn" do
-          %i.fa.fa-comment
-            = "コメントする"
+        = f.submit "コメントする", class: "comment-btn" 
+          
+        
+      
+      -# = form_with(model: [@item, @comment], local: true, class: "is-main__content__comment__form") do |f|
+      -#   = f.text_area :keyword, autocomplete: "off"  iranai
+      -#   %p.is-main__content__comment__form__notice
+      -#     = "相手のことを考え丁寧なコメントを心がけましょう。"
+      -#     %br= "不快な言葉遣いなどは利用制限や退会処分となることがあります。"
+      -#   = button_tag type: "submit", class: "comment-btn" do
+      -#     %i.fa.fa-comment
+      -#       = "コメントする"
+
   .is-main__other
     %ul.is-main__other__links
       %li.is-main__other__links__left
