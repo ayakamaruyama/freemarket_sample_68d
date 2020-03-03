@@ -7,10 +7,8 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :orders
-  has_many :comments
-  has_one :credit_card
+  has_many :seles
   has_one :address
-
   validates :nickname, :first_name, :last_name, :birthday, presence: true
   validates :email, presence: true,
             uniqueness: true,

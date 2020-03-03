@@ -1,5 +1,6 @@
 = render "/shared/header"
-= render "/shared/breadCrumb"
+- breadcrumb :item, @item
+= render "shared/breadCrumb"
 .is-main
   .is-main__content
     .is-main__content__top
@@ -8,12 +9,16 @@
           = @item.name
         .is-main__content__top__item__body
           .image-main
+            - unless @item.stock_status
+              .item-sold
+                .item-sold__inner
+                  = "SOLD"
             = image_tag @item_image, class:'main-photo'
           %ul.item-image-sub_top
             = render partial: "/shared/item_show_images", collection: @item.item_images, as: "item_image"
         
         .is-main__content__top__item__price
-          %span= "¥ #{@item.price}"
+          %span= "¥ #{@item.price.to_s(:delimited)}"
           .is-main__content__top__item__price__detail
             %span= "(税込み)"
             %span= "送料込み"
@@ -37,16 +42,21 @@
                 %th
                   = "出品者"
                 %td
-                  = @item.user.nickname
+                  - if current_user.id == @item.user_id
+                    = link_to user_path(current_user.id) do
+                      = @item.user.nickname
+                  - else
+                    = link_to seller_user_path(@item.user_id) do
+                      = @item.user.nickname
               %tr
                 %th
                   = "カテゴリー"
                 %td
-                  = link_to "ベビー・キッズ", '#'
+                  = link_to @item.category.parent.parent.name, '#'
                   %br
-                  = link_to "ベビー服(男女兼用) ~95cm", '#'
+                  = link_to @item.category.parent.name, '#'
                   %br
-                  = link_to "アウター", '#'
+                  = link_to @item.category.name, '#'
               %tr
                 %th
                   = "ブランド"
@@ -158,11 +168,11 @@
   .is-main__other
     %ul.is-main__other__links
       %li.is-main__other__links__left
-        = link_to '#' do
+        = link_to item_path(@prev_id) do
           %i= icon('fas', 'angle-left', class: "left-icon")
           %span= "前の商品"
       %li.is-main__other__links__right
-        = link_to '#' do
+        = link_to item_path(@next_id) do
           %span= "次の商品"
           %i= icon('fas', 'angle-right', class: "right-icon")
     .is-main__other__related
