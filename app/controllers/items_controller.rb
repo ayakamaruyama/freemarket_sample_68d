@@ -1,11 +1,12 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, expect: [:show]
+  before_action :authenticate_user!, only: [:new, :create, :destory, :edit, :update]
   before_action :set_item, only: [:show ,:destroy, :edit, :update]
 
   def show
     @item_image = @item.item_images[0].url.url
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
+    @category_flag = category_flag(@item.category)
     @next_id, @prev_id = set_page(@item)
   end
 
@@ -41,6 +42,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @grandchild_category = Category.find(@item[:category_id])
   end
 
   def update
@@ -54,7 +56,7 @@ class ItemsController < ApplicationController
   private
   
   def item_params
-    params.require(:item).permit(:name, :description, :category_id, :price, :condition_id , :brand_id ,:shipping_fee_who_id, :prefecture_id, :shipping_days_id, item_images_attributes: [:url, :_destroy, :id] ).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :description, :category_id, :price, :condition_id , :brand_id, :shipping_fee_who_id, :prefecture_id, :shipping_days_id, item_images_attributes: [:url, :_destroy, :id] ).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -69,4 +71,13 @@ class ItemsController < ApplicationController
     return next_id, prev_id
   end
 
+  def category_flag(category)
+    if category.ancestry.nil?
+      return 1
+    elsif category.parent.parent.nil?
+      return 2
+    else
+      return 3
+    end
+  end
 end
