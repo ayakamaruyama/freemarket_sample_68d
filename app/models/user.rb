@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :sns_credentials
   has_many :seles
+  has_many :comments
   has_one :address
   validates :nickname, :first_name, :last_name, :birthday, presence: true
   validates :email, presence: true,

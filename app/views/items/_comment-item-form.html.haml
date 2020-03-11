@@ -1,0 +1,51 @@
+  .is-main__content__comment
+      .is-main__content__comment__top
+        .is-main__content__comment__top__user-image
+          .is-main__content__comment__top__user-image__user-box
+            = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png" ,class:"buyer"
+        .is-main__content__comment__top__details
+          .is-main__content__comment__top__details__user-name
+           
+            -# %p 猫
+          - @comments.each do |comment| 
+            .is-main__content__comment__top__details__user-message-box
+              .is-main__content__comment__top__details__user-message-box__text
+                = comment.content
+                -# %p 初めまして
+              -# .is-main__content__comment__top__details__user-message-box__icon-balloon::before 
+                
+              .is-main__content__comment__top__details__user-message-box__time
+                .time-box
+                  %i= icon('fa', 'clock',class:"time-before") 
+                  %span.day-before 10分前
+
+                .flag-box
+                  =link_to '#', class: "flag-box" do
+                    %i= icon('fa', 'flag', class: "flag-before")
+      
+      -# .is-main__content__comment__top
+      -#   .is-main__content__comment__top__user-image
+      -#     .is-main__content__comment__top__user-image__user-box
+      -#       = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?1244592441", class:"seller" 
+      -#     .is-main__content__comment__top__user-image__seller-box  
+      -#       -# %p 出品者
+      -#   .is-main__content__comment__top__details    
+      -#     .is-main__content__comment__top__details__user-name
+      -#       = @comment.user_id
+      -#       -# %p 犬
+      -#     - @comments.each do |comment| 
+      -#       .is-main__content__comment__top__details__user-message-box
+      -#         .is-main__content__comment__top__details__user-message-box__text
+      -#           = comment.content
+      -#           -# %p 初めまして。こちらこそよろしくお願いします。
+      -#         -# .is-main__content__comment__top__details__user-message-box__icon-balloon:before   
+          
+      -#         .is-main__content__comment__top__details__user-message-box__time
+      -#           .time-box
+      -#             %i= icon('fa', 'clock',class:"time-before") 
+      -#             %span.day-before 10分前
+
+      -#           .flag-box
+      -#             =link_to '#', class: "flag-box" do
+      -#               %i= icon('fa', 'flag', class: "flag-before")
+        
